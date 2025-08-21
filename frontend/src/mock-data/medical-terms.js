@@ -33,22 +33,24 @@ export const medicalTerms = {
 };
 
 // Mock AI explanation generator (simulates backend response)
-export const getMockExplanation = (term, difficulty = 'simple') => {
+export const getMockExplanation = (term) => {
   const termData = medicalTerms[term.toLowerCase()];
   
   if (!termData) {
     return {
-      explanation: `${term} is a medical term. (This would be explained by AI in the real app)`,
+      simple: `${term} is a medical term. (This would be explained by AI in the real app)`,
+      detailed: `${term} is a medical term. (Detailed explanation would be provided by AI in the real app)`,
+      expert: `${term} is a medical term. (Expert-level explanation would be provided by AI in the real app)`,
       related: [],
-      difficulty,
       category: "general"
     };
   }
   
   return {
-    explanation: termData[difficulty],
+    simple: termData.simple,
+    detailed: termData.detailed,
+    expert: termData.expert,
     related: termData.related,
-    difficulty,
     category: termData.category
   };
 };
